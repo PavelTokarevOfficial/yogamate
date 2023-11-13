@@ -1,6 +1,6 @@
 <template>
-  <div class="col-12 col-md-3 sideBar">
-    <div class="mt-5 mb-5 d-flex d-md-block justify-content-center">
+  <div class="col-12 col-md-3 sideBar" ref="sidebarRef">
+    <div class="mt-5 mb-5 d-flex d-md-block justify-content-center" >
       <img src="../assets/yogamate.png" alt="logo">
     </div>
     <div class="links sticky-top pt-md-5">
@@ -18,17 +18,24 @@
 
 <script>
 import SocialLinks from './SocialLinks.vue'
+import anime from 'animejs';
 export default {
   components:{
     SocialLinks
+  },
+  mounted() {
+    anime({
+      targets: this.$refs.sidebarRef,
+      translateX: [-700, 0],
+      duration: 1500,
+      easing: 'easeInOutQuad'
+    });
   }
 }
-
 </script>
 
 <style scoped lang="scss">
 .sideBar {
-
   ul {
     padding: 0;
     li {

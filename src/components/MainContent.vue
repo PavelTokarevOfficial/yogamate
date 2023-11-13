@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12 col-md-9 mainContent">
+  <div class="col-12 col-md-9 mainContent" >
     <Intro/>
     <Advantages/>
     <AboutUs/>

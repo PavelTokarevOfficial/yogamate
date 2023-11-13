@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer mt-5" id="contact">
+  <footer class="footer mt-5" id="contact" ref="footerRef">
     <div class="row">
       <div class="col-12 col-lg-6 order-2 order-lg-1">
         <img src="../../assets/yogamate.png" alt="logo">
@@ -45,14 +45,41 @@
 <script>
 import SocialLinks from '../../components/SocialLinks.vue'
 import Feedback from "./Feedback.vue";
+import anime from "animejs";
 
 export default {
   components: {
     Feedback,
     SocialLinks,
-
   },
+  data() {
+    return {
+      visible: false,
+    };
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  methods: {
+    handleScroll() {
+      const element = this.$refs.footerRef;
+      const elementPosition = element.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+      const isVisible = elementPosition < windowHeight;
 
+      if (isVisible) {
+        this.visible = true;
+        anime({
+          targets: element,
+          translateX: [1000, 0],
+          delay: 100,
+          duration: 1000,
+          easing: 'easeInOutQuad'
+        });
+        window.removeEventListener("scroll", this.handleScroll);
+      }
+    },
+  },
 }
 
 </script>
@@ -64,7 +91,6 @@ export default {
     text-transform: uppercase;
     display: block;
   }
-
   a {
     text-decoration: none;
     color: white;

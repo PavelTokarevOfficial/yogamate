@@ -1,5 +1,5 @@
 <template>
-  <div class="intro" id="home">
+  <div class="intro" id="home" ref="introRef">
     <div class="p-0 p-md-5">
       <h1 class="header">Yoga is the journey of the self, through the self, to the self.</h1>
       <p class="slogan mt-5 mb-5">Don't miss your happier boost</p>
@@ -11,9 +11,18 @@
 
 <script>
 import MyButton from '../../ui/MyButton.vue'
+import anime from "animejs";
 export default {
   components:{
     MyButton,
+  },
+  mounted() {
+    anime({
+      targets: this.$refs.introRef,
+      translateX: [700, 0],
+      duration: 1000,
+      easing: 'easeInOutQuad'
+    });
   }
 }
 

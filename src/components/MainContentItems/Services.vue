@@ -1,5 +1,5 @@
 <template>
-  <div class="services p-3 p-md-5" id="services">
+  <div class="services p-3 p-md-5" id="services" ref="servicesRef">
     <div class="row">
       <div class="description mb-5">
         <span>Services</span>
@@ -41,7 +41,38 @@
 </template>
 
 <script>
+import anime from "animejs";
 
+export default {
+  data() {
+    return {
+      visible: false,
+    };
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  methods: {
+    handleScroll() {
+      const element = this.$refs.servicesRef;
+      const elementPosition = element.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+      const isVisible = elementPosition < windowHeight;
+
+      if (isVisible) {
+        this.visible = true;
+        anime({
+          targets: element,
+          translateX: [1000, 0],
+          delay: 100,
+          duration: 1000,
+          easing: 'easeInOutQuad'
+        });
+        window.removeEventListener("scroll", this.handleScroll);
+      }
+    },
+  },
+}
 </script>
 
 <style scoped lang="scss">

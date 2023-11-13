@@ -1,5 +1,5 @@
 <template>
-  <div class="about_us mt-5 p-3 p-md-5" id="about">
+  <div class="about_us mt-5 p-3 p-md-5" id="about" ref="aboutUsRef">
     <div class="row">
       <div class="col-12 col-lg-6">
         <img src="../../assets/flower.jpg" alt="" class="w-100 h-100 object-fit-cover">
@@ -18,10 +18,39 @@
 
 <script>
 import MyButton from '../../ui/MyButton.vue'
+import anime from "animejs";
 export default {
   components:{
     MyButton
-  }
+  },
+  data() {
+    return {
+      visible: false,
+    };
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  methods: {
+    handleScroll() {
+      const element = this.$refs.aboutUsRef;
+      const elementPosition = element.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+      const isVisible = elementPosition < windowHeight;
+
+      if (isVisible) {
+        this.visible = true;
+        anime({
+          targets: element,
+          translateX: [1000, 0],
+          delay: 100,
+          duration: 1000,
+          easing: 'easeInOutQuad'
+        });
+        window.removeEventListener("scroll", this.handleScroll);
+      }
+    },
+  },
 }
 </script>
 
