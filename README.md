@@ -2,6 +2,8 @@
 
 Technology stack: Vue 3 + Vite + Bootstrap 5 + AnimeJs + CSCC
 
+You can visit my website https://paveltokarevofficial.github.io/yogamate/
+
 install node modules
 ```bash
   npm install
