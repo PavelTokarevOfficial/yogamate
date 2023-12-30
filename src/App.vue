@@ -27,6 +27,7 @@ export default {
 }
 #app{
   background-color: #002366;
+  overflow: hidden;
 }
 
 </style>
