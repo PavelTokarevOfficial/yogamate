@@ -10,8 +10,9 @@
 <script>
 import SideBar from './components/SideBar.vue'
 import MainContent from './components/MainContent.vue'
+
 export default {
-  components:{
+  components: {
     SideBar,
     MainContent,
   }
@@ -19,15 +20,16 @@ export default {
 </script>
 
 <style lang="scss">
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color:white;
+  color: white;
 }
-#app{
+
+#app {
   background-color: #002366;
-  overflow: hidden;
+
 }
 
 </style>
